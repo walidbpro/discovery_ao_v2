@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Discovery Produit — Freelance.com × Inop's</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F7FA;--bg2:#EDF0F4;--bg3:#FFFFFF;
+  --glass:rgba(255,255,255,.72);--glass-border:rgba(0,0,0,.06);--glass-hover:rgba(255,255,255,.92);
+  --shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 6px rgba(0,0,0,.04),0 10px 24px rgba(0,0,0,.06);
+  --text:#0F172A;--text2:#475569;--text3:#94A3B8;
+  --blue:#003CC2;--blue-glow:rgba(0,60,194,.10);
+  --amber:#F59E0B;--amber-glow:rgba(245,158,11,.08);
+  --fire:#EF4444;--fire-glow:rgba(239,68,68,.05);
+  --green:#10B981;--green-glow:rgba(16,185,129,.1);
+  --inops:#E2007E;--inops-glow:rgba(226,0,126,.08);
+  --cyan:#0891B2;--cyan-glow:rgba(8,145,178,.08);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(0,.0,.2,1);
+}
+
+html{scroll-behavior:smooth}
+html,body{width:100%;height:100%;overflow-x:hidden;overflow-y:auto;font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;font-size:1.05rem}
+body::before{content:'';position:fixed;top:-20%;left:-10%;width:50%;height:50%;background:radial-gradient(circle,rgba(0,60,194,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;bottom:-20%;right:-10%;width:50%;height:50%;background:radial-gradient(circle,rgba(245,158,11,.03) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.45rem 1.8rem;display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.88);backdrop-filter:blur(28px) saturate(1.4);-webkit-backdrop-filter:blur(28px) saturate(1.4);border-bottom:1px solid rgba(0,0,0,.05);box-shadow:0 1px 12px rgba(0,0,0,.03)}
+nav .logo{display:flex;align-items:center;gap:.6rem}
+nav .logo .brand{font-weight:800;font-size:1.1rem;color:var(--text);letter-spacing:-.01em}
+nav .logo .brand span{color:var(--blue)}
+nav .logo .sep{opacity:.2;font-weight:300;margin:0 .1rem}
+nav .logo .tag{font-weight:700;font-size:1rem;letter-spacing:.1em;color:var(--blue)}
+nav a{font-size:.8rem;color:var(--text3);text-decoration:none;transition:all .2s var(--ease);letter-spacing:.01em;cursor:pointer;padding:.3rem .6rem;border-radius:8px;font-weight:500;white-space:nowrap}
+nav a:hover{color:var(--text);background:rgba(0,0,0,.04)}
+nav a.active{color:var(--blue);background:var(--blue-glow);font-weight:700;box-shadow:0 0 0 1px rgba(0,60,194,.1)}
+
+/* ── SLIDES ── */
+.deck{width:100%;scroll-snap-type:y mandatory;overflow-y:auto;height:100vh}
+.slide{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;padding:4.5rem 2.5rem 2rem;scroll-snap-align:start;overflow:hidden;position:relative}
+
+/* ── SCROLL REVEAL ── */
+.slide>*{opacity:0;transform:translateY(20px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.slide.visible>*{opacity:1;transform:none}
+.slide.visible>*:nth-child(2){transition-delay:.08s}
+.slide.visible>*:nth-child(3){transition-delay:.15s}
+.slide.visible>*:nth-child(4){transition-delay:.22s}
+.slide.visible>*:nth-child(5){transition-delay:.28s}
+
+/* ── COMMON ── */
+.sl{display:inline-block;font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.4rem 1rem;border-radius:100px;margin-bottom:1rem}
+.sl-fc{color:var(--blue);border:1px solid rgba(0,60,194,.15);background:var(--blue-glow)}
+.sl-in{color:var(--inops);border:1px solid rgba(226,0,126,.15);background:var(--inops-glow)}
+.sl-x{color:var(--cyan);border:1px solid rgba(8,145,178,.15);background:var(--cyan-glow)}
+.st{font-size:3.2rem;font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:.6rem}
+.ss{font-size:1.5rem;color:var(--text2);margin-bottom:2.5rem;max-width:1000px;text-align:center;line-height:1.6}
+.gradient-text{background:linear-gradient(135deg,var(--blue) 20%,var(--amber) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.glass{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:1.8rem;transition:all .3s var(--ease);box-shadow:var(--shadow)}
+.glass:hover{background:var(--glass-hover);border-color:rgba(0,0,0,.08);box-shadow:var(--shadow-lg);transform:translateY(-1px)}
+.glass-grid{display:grid;gap:1rem}
+.glass-grid-3{grid-template-columns:repeat(3,1fr)}
+.glass-grid-2{grid-template-columns:repeat(2,1fr)}
+
+.hero-metrics{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;max-width:1300px}
+.hero-metric{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:1.2rem 1.5rem;min-width:130px;text-align:center;transition:all .3s var(--ease);box-shadow:var(--shadow)}
+.hero-metric:hover{background:var(--glass-hover);border-color:rgba(0,0,0,.1);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.hm-val{font-size:2.8rem;font-weight:800;display:block;margin-bottom:.15rem}
+.hm-label{font-size:.95rem;color:var(--text3);letter-spacing:.03em}
+
+.verbatim{position:relative;padding:2rem 2.2rem;margin:1rem 0;background:linear-gradient(135deg,#0F172A,#1E293B);border-left:4px solid var(--blue);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(15,23,42,.2)}
+.verbatim::before{content:'\201C';position:absolute;top:.6rem;left:1rem;font-size:4rem;color:rgba(0,60,194,.2);font-family:Georgia,serif;line-height:1}
+.verbatim q{display:block;font-size:1.4rem;font-weight:500;font-style:italic;line-height:1.7;margin-left:1.5rem;quotes:none;color:#FFFFFF}
+.verbatim .v-src{font-size:.85rem;color:rgba(255,255,255,.45);margin-top:.8rem;margin-left:1.5rem;font-style:normal}
+
+.callout{background:var(--amber-glow);border:1px solid rgba(245,158,11,.12);border-radius:12px;padding:.9rem 1.2rem;font-size:1rem;color:#92400E;margin:.6rem 0}
+.callout-fire{background:var(--fire-glow);border-color:rgba(239,68,68,.1);color:#991B1B}
+
+.journey-step{display:grid;grid-template-columns:50px 1fr 140px 80px;align-items:center;gap:1rem;padding:.55rem 1rem;border-radius:10px;margin:.15rem 0;transition:all .2s var(--ease)}
+.journey-step:hover{background:rgba(0,0,0,.02)}
+.journey-step.is-fire{background:var(--fire-glow);border:1px solid rgba(239,68,68,.08)}
+.journey-step.is-fire:hover{background:rgba(239,68,68,.08)}
+
+.killer-card{padding:1.3rem 1.5rem;border-left:3px solid var(--amber);position:relative}
+.kt{display:inline-block;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:6px;border:1px solid}
+.kt-k{border-color:rgba(245,158,11,.2);color:var(--amber);background:var(--amber-glow)}
+.kt-r{border-color:rgba(100,116,139,.2);color:#64748B;background:rgba(100,116,139,.06)}
+.kt-f{border-color:rgba(0,60,194,.15);color:var(--blue);background:var(--blue-glow)}
+.kt-fire{border-color:rgba(239,68,68,.15);color:var(--fire);background:var(--fire-glow)}
+.kt-green{border-color:rgba(16,185,129,.15);color:var(--green);background:var(--green-glow)}
+
+.vq{font-size:.9rem;font-style:italic;color:var(--text2);border-left:2px solid var(--blue);padding-left:.6rem;margin-top:.4rem;line-height:1.5}
+.vq span{color:var(--text3);font-style:normal}
+
+.font-mono{font-variant-numeric:tabular-nums}
+.text-fire{color:var(--fire)}.text-green{color:var(--green)}.text-amber{color:var(--amber)}.text-blue{color:var(--blue)}.text-muted{color:var(--text3)}
+
+/* ── JOURNEY BARS ── */
+.js-bar{flex:1;height:8px;background:var(--bg2);border-radius:4px;overflow:hidden}
+.js-bar-fill{height:100%;border-radius:4px;transition:width .6s var(--ease-out)}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--amber));z-index:200;transition:width .35s var(--ease-out);border-radius:0 2px 2px 0;box-shadow:0 0 8px rgba(0,60,194,.3)}
+
+/* ── SLIDE COUNTER ── */
+#slide-counter{position:fixed;bottom:1.5rem;right:2rem;z-index:100;font-size:.85rem;font-weight:600;color:var(--text3);background:rgba(255,255,255,.85);border:1px solid var(--glass-border);padding:.4rem .9rem;border-radius:10px;backdrop-filter:blur(16px);font-variant-numeric:tabular-nums;letter-spacing:.05em;box-shadow:var(--shadow)}
+#slide-counter .current{color:var(--blue);font-weight:800}
+
+/* ── KEYBOARD HINT ── */
+#kb-hint{position:fixed;bottom:1.5rem;left:2rem;z-index:100;font-size:.75rem;color:var(--text3);background:rgba(255,255,255,.85);border:1px solid var(--glass-border);padding:.35rem .8rem;border-radius:10px;backdrop-filter:blur(16px);box-shadow:var(--shadow);opacity:1;transition:opacity 1s var(--ease)}
+#kb-hint kbd{display:inline-block;background:var(--bg2);border:1px solid var(--glass-border);border-radius:4px;padding:.1rem .35rem;font-family:var(--font);font-size:.7rem;font-weight:600;margin:0 .15rem;box-shadow:0 1px 0 rgba(0,0,0,.1)}
+
+/* ── GRID ROWS (killer/required/nth) ── */
+.feature-row{display:grid;grid-template-columns:280px 1fr;border-bottom:1px solid var(--glass-border);transition:background .2s var(--ease)}
+.feature-row:last-child{border-bottom:none}
+.feature-row:hover{background:rgba(0,0,0,.015)}
+.feature-left{padding:.65rem 1rem}
+.feature-right{padding:.65rem 1rem;display:flex;align-items:center}
+
+/* ── PRINT ── */
+@media print{
+  nav,#progress,#slide-counter,#kb-hint{display:none!important}
+  .slide{height:auto!important;min-height:100vh;page-break-after:always;page-break-inside:avoid}
+  .slide>*{opacity:1!important;transform:none!important}
+  body::before,body::after{display:none}
+}
+
+@media(max-width:1300px){
+  nav{padding:.4rem 1rem;gap:.6rem;overflow-x:auto}
+  nav a{font-size:.7rem;padding:.25rem .45rem}
+  .slide{padding:4rem 1.5rem 1.5rem}
+  .st{font-size:1.8rem}
+  .hero-metrics{flex-direction:column;align-items:center}
+  .glass-grid-3,.glass-grid-2{grid-template-columns:1fr}
+  .journey-step{grid-template-columns:40px 1fr 80px 50px}
+  .feature-row{grid-template-columns:1fr}
+  #kb-hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" style="width:0%"></div>
+<div id="slide-counter"><span class="current">1</span> / 14</div>
+<div id="kb-hint"><kbd>&larr;</kbd><kbd>&rarr;</kbd> naviguer &middot; <kbd>Espace</kbd> suivant</div>
+<nav>
+  <div class="logo">
+    <span class="tag">DISCOVERY</span>
+  </div>
+  <a data-nav="1" onclick="go(1)">Titre</a>
+  <a data-nav="2" onclick="go(2)">Approche</a>
+  <a data-nav="3" onclick="go(3)">Méthode</a>
+  <a data-nav="4" onclick="go(4)">Agrégation</a>
+  <a data-nav="5" onclick="go(5)">Résumé</a>
+  <a data-nav="6" onclick="go(6)">Segments</a>
+  <a data-nav="7" onclick="go(7)">Parcours</a>
+  <a data-nav="8" onclick="go(8)">Killers</a>
+  <a data-nav="9" onclick="go(9)">Required 1</a>
+  <a data-nav="10" onclick="go(10)">Required 2</a>
+  <a data-nav="11" onclick="go(11)">NTH</a>
+  <a data-nav="12" onclick="go(12)">Backlog</a>
+  <a data-nav="13" onclick="go(13)">Inop's</a>
+  <a data-nav="14" onclick="go(14)">Limites</a>
+  <img src="Freelance.com RVB_freelance.com.png" alt="Freelance.com" style="margin-left:auto;height:48px;object-fit:contain">
+</nav>
+
+<div class="deck">
+
+  <!-- ══════════════ SLIDE 1: COVER ══════════════ -->
+  <div class="slide" data-slide="1" style="text-align:center;position:relative">
+    <!-- Decorative circles -->
+    <div style="position:absolute;top:15%;left:8%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,60,194,.06),transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;bottom:20%;right:10%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.06),transparent 70%);pointer-events:none"></div>
+
+    <div style="font-size:.85rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;opacity:.7">Discovery Produit</div>
+    <h1 data-a="1" class="st" style="font-size:3.6rem;letter-spacing:-.03em;max-width:1300px;margin-bottom:.8rem">Ce que 30 appels d'offres<br>nous disent sur <span class="gradient-text">le produit</span></h1>
+    <p data-a="2" style="font-size:1.2rem;color:var(--text2);margin-bottom:3rem;font-weight:300;max-width:1000px;line-height:1.7">La voix des clients grands comptes, extraite de leurs AO — dans leurs mots, pas les notres.</p>
+    <div data-a="3" style="display:flex;gap:1.2rem;justify-content:center;align-items:stretch">
+      <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.8rem;border-radius:16px;background:rgba(0,60,194,.05);border:1px solid rgba(0,60,194,.1);box-shadow:0 4px 16px rgba(0,60,194,.06);transition:all .3s var(--ease)" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(0,60,194,.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,60,194,.06)'">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#0052FF);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 10px rgba(0,60,194,.3)">
+          <span style="font-size:1.1rem;font-weight:900;color:#fff">18</span>
+        </div>
+        <div style="text-align:left">
+          <div style="font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)">Source primaire</div>
+          <div style="font-size:.9rem;color:var(--text);font-weight:600">FCOM · AO grands comptes prives</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.8rem;border-radius:16px;background:rgba(226,0,126,.04);border:1px solid rgba(226,0,126,.1);box-shadow:0 4px 16px rgba(226,0,126,.06);transition:all .3s var(--ease)" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(226,0,126,.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(226,0,126,.06)'">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--inops),#FF1493);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 10px rgba(226,0,126,.3)">
+          <span style="font-size:1.1rem;font-weight:900;color:#fff">12</span>
+        </div>
+        <div style="text-align:left">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--inops)">Source secondaire</div>
+          <div style="font-size:.85rem;color:var(--text);font-weight:600">Inop's · AO grands comptes publics & parapublics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 2: THÈSE ══════════════ -->
+  <div class="slide" data-slide="2" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto">
+    <span data-a="1" class="sl sl-fc">Approche</span>
+    <div data-a="1" class="st" style="font-size:1.8rem">Product Discovery via Appels d'Offres</div>
+    <p data-a="2" style="font-size:1.05rem;color:var(--text2);margin-bottom:1.2rem;border-left:3px solid var(--blue);padding-left:.8rem;line-height:1.6"><em>L'objectif n'est pas d'analyser des AO. C'est de faire de la product discovery sans interviews.</em></p>
+
+    <p data-a="2" style="font-size:1rem;color:var(--text2);margin-bottom:1.2rem">Un AO est un <strong style="color:var(--text)">signal différent</strong> d'une interview — contractuel, juridiquement engageant.</p>
+
+    <div data-a="3" style="width:100%;overflow:hidden;border-radius:12px;border:1px solid var(--glass-border);box-shadow:var(--shadow);margin-bottom:1rem">
+      <table style="width:100%;border-collapse:collapse;font-size:.98rem">
+        <thead><tr style="background:rgba(0,60,194,.05)">
+          <th style="text-align:left;padding:.55rem 1rem;font-weight:700;font-size:.85rem;letter-spacing:.04em;color:var(--blue);border-bottom:1px solid var(--glass-border)">Document AO</th>
+          <th style="text-align:left;padding:.55rem 1rem;font-weight:700;font-size:.85rem;letter-spacing:.04em;color:var(--blue);border-bottom:1px solid var(--glass-border)">Signal extrait</th>
+          <th style="text-align:left;padding:.55rem 1rem;font-weight:700;font-size:.85rem;letter-spacing:.04em;color:var(--blue);border-bottom:1px solid var(--glass-border)">Ce que ça révèle</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:var(--bg3)"><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">RC — Pondération technique/prix</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Hiérarchie de décision réelle</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Ce pour quoi il va vraiment choisir son prestataire</td></tr>
+          <tr><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">RC — Critères pondérés</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Hiérarchie de valeur déclarée</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Ce qu'il croit vouloir, dans quel ordre</td></tr>
+          <tr style="background:var(--bg3)"><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">CCAP — Pénalités</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Frictions passées 🔥</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Les échecs qui lui ont déjà coûté cher</td></tr>
+          <tr><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">CCAP — SLAs</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Niveau de service attendu</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Son seuil minimum d'acceptabilité opérationnelle</td></tr>
+          <tr style="background:var(--bg3)"><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">CCTP — Exigences fonctionnelles</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Besoins fonctionnels</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Ses besoins dans ses propres mots, non reformulés</td></tr>
+          <tr><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">CCTP — Processus & workflows</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border)">Parcours utilisateur actuel</td><td style="padding:.45rem 1rem;border-bottom:1px solid var(--glass-border);color:var(--text2)">Comment ça marche — et pourquoi c'est insuffisant</td></tr>
+          <tr style="background:var(--bg3)"><td style="padding:.45rem 1rem">BPU / DPGF</td><td style="padding:.45rem 1rem">Valorisation financière</td><td style="padding:.45rem 1rem;color:var(--text2)">Ce qu'il est prêt à payer, poste par poste</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div data-a="4" style="display:flex;gap:.8rem;width:100%">
+      <div style="flex:1;padding:.65rem 1rem;border-radius:10px;background:var(--fire-glow);border:1px solid rgba(239,68,68,.1);font-size:.95rem">
+        <strong style="color:var(--fire)">🔥 Ce qu'il a mis en pénalité</strong><br>
+        <span style="color:#991B1B">→ Friction passée → prérequis non négociable (éliminatoire si absent)</span>
+      </div>
+      <div style="flex:1;padding:.65rem 1rem;border-radius:10px;background:var(--amber-glow);border:1px solid rgba(245,158,11,.1);font-size:.95rem">
+        <strong style="color:var(--amber)">💎 Ce qu'il a classé par importance</strong><br>
+        <span style="color:#92400E">→ Feature différenciateur → c'est ici qu'on gagne</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 6: RÈGLE DE CLASSIFICATION ══════════════ -->
+  <div class="slide" data-slide="3" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl sl-fc">Méthode · La règle</span>
+      <span style="font-size:.85rem;font-weight:600;color:var(--blue);padding:.25rem .6rem;border-radius:6px;background:var(--blue-glow);border:1px solid rgba(0,60,194,.12)">Source primaire · 18 AO Fcom</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem">Comment l'IA classe <span class="gradient-text">243 features</span></div>
+    <p data-a="1" style="font-size:.8rem;color:var(--text2);margin-bottom:.6rem">Suivons une feature de bout en bout pour comprendre la méthode</p>
+
+    <p data-a="1" style="font-size:1rem;color:var(--text2);text-align:center;width:100%;margin-bottom:.8rem">On suit <strong style="color:var(--text)">"Vivier pré-qualifié"</strong> à travers les deux étapes</p>
+
+    <!-- Timeline -->
+    <div data-a="2" style="width:100%;position:relative;padding-left:2.5rem">
+      <!-- Vertical line -->
+      <div style="position:absolute;left:1rem;top:0;bottom:0;width:2px;background:var(--glass-border)"></div>
+
+      <!-- EXTRACTION -->
+      <div style="position:relative;margin-bottom:.6rem">
+        <div style="position:absolute;left:-1.9rem;top:.55rem;width:10px;height:10px;border-radius:50%;background:var(--text3);border:2px solid var(--bg)"></div>
+        <div style="padding:.55rem .8rem;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border)">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.15rem">Extraction</div>
+          <div style="font-size:.98rem;font-weight:700">L'IA détecte "Vivier pré-qualifié" dans 15 AO</div>
+          <div style="font-size:.85rem;color:var(--text3)">La feature est mentionnée dans les dossiers de 15 grands comptes différents</div>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 1 — PAR AO -->
+      <div style="position:relative;margin-bottom:.6rem">
+        <div style="position:absolute;left:-1.9rem;top:.55rem;width:10px;height:10px;border-radius:50%;background:var(--amber);border:2px solid var(--bg)"></div>
+        <div style="padding:.55rem .8rem;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border)">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.15rem">Étape 1 — Par AO</div>
+          <div style="font-size:.98rem;font-weight:700">Où apparaît-elle ? Dans quel registre ?</div>
+          <div style="font-size:.85rem;color:var(--text3);margin-bottom:.3rem">Pour chaque AO, l'IA croise le type de document et le signal linguistique</div>
+          <div style="font-size:.85rem;font-style:italic;color:var(--text3);border-left:2px solid var(--amber);padding-left:.5rem;line-height:1.5">"Le candidat devra disposer d'un vivier pré-qualifié" — RC BPCE, pondéré 25% technique → Doc. notation + aspirationnel → <strong style="color:var(--amber);font-style:normal">Killer</strong></div>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 2 — VOTE TRANSVERSE -->
+      <div style="position:relative;margin-bottom:.6rem">
+        <div style="position:absolute;left:-1.9rem;top:.55rem;width:10px;height:10px;border-radius:50%;background:var(--amber);border:2px solid var(--bg)"></div>
+        <div style="padding:.55rem .8rem;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border)">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.15rem">Étape 2 — Vote transverse</div>
+          <div style="font-size:.98rem;font-weight:700;margin-bottom:.35rem">Les 15 AO ne sont pas d'accord — on compte</div>
+          <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.2rem"><span style="font-size:.85rem;font-weight:700;color:var(--amber);width:50px">Killer</span><div style="flex:1;height:16px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="width:63%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="font-size:.85rem;font-weight:800;color:#fff">63%</span></div></div></div>
+          <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.2rem"><span style="font-size:.85rem;font-weight:700;color:var(--fire);width:50px">Required</span><div style="flex:1;height:16px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="width:26%;height:100%;background:var(--fire);border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="font-size:.85rem;font-weight:800;color:#fff">26%</span></div></div></div>
+          <div style="display:flex;align-items:center;gap:.4rem"><span style="font-size:.85rem;font-weight:700;color:var(--text3);width:50px">NTH</span><div style="flex:1;height:16px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="width:11%;height:100%;background:var(--text3);border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="font-size:.85rem;font-weight:800;color:#fff">11%</span></div></div></div>
+        </div>
+      </div>
+
+      <!-- VERDICT -->
+      <div style="position:relative;margin-bottom:.8rem">
+        <div style="position:absolute;left:-1.9rem;top:.55rem;width:10px;height:10px;border-radius:50%;background:var(--fire);border:2px solid var(--bg)"></div>
+        <div style="padding:.55rem .8rem;border-radius:10px;background:var(--amber-glow);border:2px solid rgba(245,158,11,.2)">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.15rem">Verdict</div>
+          <div style="font-size:.98rem;font-weight:700">K% domine → Vivier pré-qualifié est un <span style="color:var(--amber)">Killer</span></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════ SLIDE 7: DE 243 À 21 ══════════════ -->
+  <div class="slide" data-slide="4" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <span data-a="1" class="sl sl-fc">Méthode · L'agrégation</span>
+    <div data-a="1" class="st" style="font-size:2.2rem">De 243 features à <span class="gradient-text">20 familles</span></div>
+    <p data-a="1" style="font-size:.95rem;color:var(--text2);margin-bottom:1.5rem">On regroupe par fonction, puis on compte les votes.</p>
+
+    <!-- ── Entonnoir : 243 → 20 ── -->
+    <div data-a="2" style="width:100%;display:flex;flex-direction:column;align-items:center">
+
+      <!-- TOP : 243 formulations brutes (large) -->
+      <div style="width:100%;padding:1.2rem 2rem;background:rgba(0,60,194,.05);border:1px solid rgba(0,60,194,.1);border-radius:16px 16px 0 0;text-align:center">
+        <div style="font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem">243 formulations brutes extraites des 18 AO</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center">
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid var(--glass-border);color:var(--text2)">"Communaute de niche" <span style="color:var(--text3)">Klesia</span></span>
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid var(--glass-border);color:var(--text2)">"Vivier actif 800-1000 CV" <span style="color:var(--text3)">EDF</span></span>
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid var(--glass-border);color:var(--text2)">"Dashboard interactif KPIs" <span style="color:var(--text3)">EGIS</span></span>
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid var(--glass-border);color:var(--text2)">"Reporting temps reel" <span style="color:var(--text3)">PE</span></span>
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid var(--glass-border);color:var(--text2)">"Conformite URSSAF" <span style="color:var(--text3)">RESAH</span></span>
+          <span style="font-size:.82rem;padding:.2rem .55rem;border-radius:6px;background:rgba(255,255,255,.5);border:1px solid var(--glass-border);color:var(--text3)">+ 238 autres...</span>
+        </div>
+      </div>
+
+      <!-- TRAPEZE CSS : entonnoir visuel -->
+      <div style="width:100%;position:relative;overflow:hidden">
+        <div style="width:100%;height:80px;background:rgba(0,60,194,.05);clip-path:polygon(0 0, 100% 0, 85% 100%, 15% 100%)"></div>
+        <!-- Fleche + label centre -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div style="font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);opacity:.6">Regroupement semantique</div>
+          <div style="font-size:2rem;color:var(--blue);opacity:.3;line-height:1;margin-top:.1rem">&#x25BC;</div>
+        </div>
+      </div>
+
+      <!-- MIDDLE : transition resserree -->
+      <div style="width:70%;position:relative;overflow:hidden">
+        <div style="width:100%;height:50px;background:rgba(0,60,194,.07);clip-path:polygon(0 0, 100% 0, 88% 100%, 12% 100%)"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <div style="font-size:.7rem;color:var(--text3)">Lecture semantique, pas keyword matching</div>
+        </div>
+      </div>
+
+      <!-- BOTTOM : 20 familles (etroit) -->
+      <div style="width:55%;padding:1rem 1.5rem;background:rgba(0,60,194,.09);border:1px solid rgba(0,60,194,.15);border-radius:0 0 16px 16px;text-align:center">
+        <div style="font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem">20 familles transverses</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center">
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Dashboard KPI</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Vivier</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Portail digital</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Matching IA</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Alertes</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.2);color:var(--amber);font-weight:700">Scoring</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Compliance</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Integration SI</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Anti-turnover</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Onboarding</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Sous-traitance</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Facturation</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">SSO</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">SLA</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Hebergement UE</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);color:var(--fire);font-weight:700">Clause PI</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.18);color:var(--green);font-weight:700">Avance treso.</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border);color:var(--text3);font-weight:600">Transparence</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border);color:var(--text3);font-weight:600">RSE</span>
+          <span style="font-size:.78rem;padding:.18rem .5rem;border-radius:6px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border);color:var(--text3);font-weight:600">Multi-entites</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 3: RÉSUMÉ EXÉCUTIF ══════════════ -->
+  <div class="slide" data-slide="5" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <span data-a="1" class="sl sl-fc">Résumé exécutif · 30 AO</span>
+    <div data-a="1" class="st" style="font-size:1.8rem">30 AO, <span class="gradient-text">3 conclusions</span></div>
+    <p data-a="1" style="font-size:1rem;color:var(--text2);margin-bottom:1rem">Ce que les grands comptes achètent, punissent, et ignorent.</p>
+
+    <!-- ── 3 insight cards ── -->
+    <div data-a="2" style="width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+
+      <!-- Insight 1: Killers -->
+      <div style="padding:1.5rem;border-radius:16px;background:var(--amber-glow);border:2px solid rgba(245,158,11,.2);display:flex;flex-direction:column;gap:.6rem">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);opacity:.7">Ce qu'ils achetent</div>
+        <div style="display:flex;align-items:baseline;gap:.5rem">
+          <span style="font-size:4rem;font-weight:900;color:var(--amber);line-height:1">6</span>
+          <span style="font-size:1.1rem;font-weight:800;color:var(--amber);line-height:1.2">killers<br><span style="font-weight:600;font-size:.9rem;opacity:.8">100% produit</span></span>
+        </div>
+        <div style="font-size:.9rem;color:var(--text);font-weight:600;line-height:1.4">Ce qui fait gagner l'AO est toujours une feature plateforme.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.25rem;margin-top:auto">
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Dashboard KPI</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Vivier pré-qualifié</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Portail digital</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Qualification</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Matching</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(245,158,11,.15);color:var(--amber);font-weight:700">Alertes proactives</span>
+        </div>
+      </div>
+
+      <!-- Insight 2: Required -->
+      <div style="padding:1.5rem;border-radius:16px;background:var(--fire-glow);border:2px solid rgba(239,68,68,.15);display:flex;flex-direction:column;gap:.6rem">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--fire);opacity:.7">Ce qu'ils punissent</div>
+        <div style="display:flex;align-items:baseline;gap:.5rem">
+          <span style="font-size:4rem;font-weight:900;color:var(--fire);line-height:1">10</span>
+          <span style="font-size:1.1rem;font-weight:800;color:var(--fire);line-height:1.2">required<br><span style="font-weight:600;font-size:.9rem;opacity:.8">50% process</span></span>
+        </div>
+        <div style="font-size:.9rem;color:var(--text);font-weight:600;line-height:1.4">Ce qui elimine n'est pas que technique — c'est aussi operationnel.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.25rem;margin-top:auto">
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(239,68,68,.1);color:var(--fire);font-weight:700">Compliance continue freelance</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(239,68,68,.1);color:var(--fire);font-weight:700">Anti-turnover</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,60,194,.08);color:var(--blue);font-weight:700">Integration SI</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,60,194,.08);color:var(--blue);font-weight:700">Onboarding</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(239,68,68,.1);color:var(--fire);font-weight:700">Encadrement sous-traitance</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(239,68,68,.1);color:var(--fire);font-weight:700">Pilotage contractuel</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,60,194,.08);color:var(--blue);font-weight:700">SSO / Sécurité SI</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,60,194,.08);color:var(--blue);font-weight:700">SLA</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(239,68,68,.1);color:var(--fire);font-weight:700">Clause cession propriété intellectuelle</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,60,194,.08);color:var(--blue);font-weight:700">Hebergement UE</span>
+        </div>
+      </div>
+
+      <!-- Insight 3: Confirmes -->
+      <div style="padding:1.5rem;border-radius:16px;background:rgba(16,185,129,.04);border:2px solid rgba(16,185,129,.15);display:flex;flex-direction:column;gap:.6rem">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);opacity:.7">Ce que les 2 sources confirment</div>
+        <div style="display:flex;align-items:baseline;gap:.5rem">
+          <span style="font-size:4rem;font-weight:900;color:var(--green);line-height:1">4</span>
+          <span style="font-size:1.1rem;font-weight:800;color:var(--green);line-height:1.2">confirmes<br><span style="font-weight:600;font-size:.9rem;opacity:.8">prive + public</span></span>
+        </div>
+        <div style="font-size:.9rem;color:var(--text);font-weight:600;line-height:1.4">Prive + public convergent sur les memes features critiques.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.25rem;margin-top:auto">
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(16,185,129,.1);color:var(--green);font-weight:700">Dashboard</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(16,185,129,.1);color:var(--green);font-weight:700">Vivier</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(16,185,129,.1);color:var(--green);font-weight:700">Alertes</span>
+          <span style="font-size:.8rem;padding:.15rem .4rem;border-radius:5px;background:rgba(16,185,129,.1);color:var(--green);font-weight:700">Portail digital</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Bottom insight bar ── -->
+    <div data-a="3" style="width:100%;padding:1rem 1.5rem;border-radius:14px;background:linear-gradient(135deg,#0F172A,#1E293B);display:flex;align-items:center;gap:1.5rem">
+      <div style="font-size:2.5rem;color:rgba(0,60,194,.3);font-family:Georgia,serif;line-height:1;flex-shrink:0">"</div>
+      <div style="flex:1">
+        <div style="font-size:1rem;font-style:italic;color:rgba(255,255,255,.9);line-height:1.5">Le marché ne cherche plus un intermédiaire qui envoie des CV. Il cherche une <strong style="color:var(--amber);font-style:normal">plateforme</strong> qui pilote la performance, garantit la conformité, et anticipe les problèmes.</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.4);margin-top:.3rem">Signal consolidé — 30 AO</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 6: SEGMENTATION ══════════════ -->
+  <div class="slide" data-slide="6" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <span data-a="1" class="sl sl-fc">Segmentation · 26 AO sur 30 × 4 secteurs</span>
+    <div data-a="1" class="st" style="font-size:1.7rem;margin-bottom:.3rem">Qui veut quoi — <span class="gradient-text">ce qui distingue chaque secteur</span></div>
+    <p data-a="1" style="font-size:.88rem;color:var(--text3);margin-top:0;margin-bottom:1.2rem">Base : 30 AO — 4 AO exclus (n=1 par secteur, pas de pattern exploitable)</p>
+
+    <!-- SOCLE UNIVERSEL -->
+    <div data-a="1" style="width:100%;margin-bottom:1.5rem">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem">Socle universel — tout le monde le veut, ça ne segmente pas</div>
+      <div style="width:100%;padding:.8rem 1rem;border-radius:12px;background:rgba(0,0,0,.025);border:1px solid var(--glass-border);display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="font-size:.88rem;font-weight:600;color:var(--text);padding:.35rem .8rem;border-radius:20px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border)">Dashboard KPI temps réel <span style="color:var(--text3);font-weight:500">94%</span></span>
+        <span style="font-size:.88rem;font-weight:600;color:var(--text);padding:.35rem .8rem;border-radius:20px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border)">Suivi missions & facturation <span style="color:var(--text3);font-weight:500">83%</span></span>
+        <span style="font-size:.88rem;font-weight:600;color:var(--text);padding:.35rem .8rem;border-radius:20px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border)">Vivier pré-qualifié <span style="color:var(--text3);font-weight:500">78%</span></span>
+        <span style="font-size:.88rem;font-weight:600;color:var(--text);padding:.35rem .8rem;border-radius:20px;background:rgba(0,0,0,.03);border:1px solid var(--glass-border)">Compliance continue <span style="color:var(--text3);font-weight:500">67%</span></span>
+      </div>
+    </div>
+
+    <!-- CE QUI DISTINGUE -->
+    <div data-a="2" style="width:100%;margin-bottom:.5rem">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem">Ce qui distingue chaque secteur — la couche d'intégration</div>
+
+      <!-- 4-card grid -->
+      <div style="width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:.6rem">
+
+        <!-- FINANCE -->
+        <div style="padding:.8rem .8rem;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);border-left:3px solid var(--blue);display:flex;flex-direction:column;gap:.3rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:1.05rem;font-weight:800">Finance</span>
+            <span style="font-size:.72rem;padding:.12rem .35rem;border-radius:5px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.12)">7 AO</span>
+          </div>
+          <div style="font-size:.72rem;color:var(--text3);line-height:1.3">BPCE ×3 · Klésia · BdF · AGIRC · AXA</div>
+          <div style="height:1px;background:var(--glass-border);margin:.2rem 0"></div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Transparence tarifaire</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 75%</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Avance trésorerie</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 50%</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Compliance renforcée</div>
+          </div>
+        </div>
+
+        <!-- ENERGIE -->
+        <div style="padding:.8rem .8rem;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);border-left:3px solid var(--amber);display:flex;flex-direction:column;gap:.3rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:1.05rem;font-weight:800">Énergie</span>
+            <span style="font-size:.72rem;padding:.12rem .35rem;border-radius:5px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">4 AO</span>
+          </div>
+          <div style="font-size:.72rem;color:var(--text3);line-height:1.3">EDF ×2 · ENGIE · ENEDIS</div>
+          <div style="height:1px;background:var(--glass-border);margin:.2rem 0"></div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Intégration SI</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 67% · API, ERP, VMS</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">SSO / Sécurité</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 67%</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Hébergement UE</div>
+          </div>
+        </div>
+
+        <!-- TRANSPORT -->
+        <div style="padding:.8rem .8rem;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);border-left:3px solid var(--green);display:flex;flex-direction:column;gap:.3rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:1.05rem;font-weight:800">Transport</span>
+            <span style="font-size:.72rem;padding:.12rem .35rem;border-radius:5px;background:var(--green-glow);color:var(--green);font-weight:700;border:1px solid rgba(16,185,129,.15)">6 AO</span>
+          </div>
+          <div style="font-size:.72rem;color:var(--text3);line-height:1.3">SGP · ADP · RATP ×2 · Poste · SNCF</div>
+          <div style="height:1px;background:var(--glass-border);margin:.2rem 0"></div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Alertes proactives</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 100%</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Gouvernance IA</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Scoring profils</div>
+          </div>
+        </div>
+
+        <!-- PUBLIC -->
+        <div style="padding:.8rem .8rem;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);border-left:3px solid var(--inops);display:flex;flex-direction:column;gap:.3rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:1.05rem;font-weight:800">Public</span>
+            <span style="font-size:.72rem;padding:.12rem .35rem;border-radius:5px;background:var(--inops-glow);color:var(--inops);font-weight:700;border:1px solid rgba(226,0,126,.15)">9 AO</span>
+          </div>
+          <div style="font-size:.72rem;color:var(--text3);line-height:1.3">PE · RESAH · ANTS · ADEME · ACCOSS...</div>
+          <div style="height:1px;background:var(--glass-border);margin:.2rem 0"></div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Portail digital self-service</div>
+            <div style="font-size:.78rem;color:var(--text3)">Sur-indexé 75%</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Matching IA multicritère</div>
+          </div>
+          <div>
+            <div style="font-size:.9rem;font-weight:800;color:var(--text)">Onboarding digital</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Hors segments -->
+    <div data-a="2" style="width:100%;margin-bottom:.6rem">
+      <p style="font-size:.85rem;font-style:italic;color:var(--text3)">Hors segments : Hermès (luxe), Bolloré (logistique), EGIS (ingénierie), Imperial Brands (FMCG) — trop hétérogènes.</p>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════ SLIDE 4: PARCOURS FCOM ══════════════ -->
+  <div class="slide" data-slide="7" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <span data-a="1" class="sl sl-fc">Parcours utilisateur · 18 AO plateforme</span>
+    <div data-a="1" class="st" style="font-size:1.6rem;margin-bottom:.2rem">11 étapes. 5 concentrent les <span class="text-fire">frictions critiques</span>.</div>
+
+    <div data-a="2" class="glass" style="padding:.5rem .8rem;width:100%;max-width:1300px">
+      <div class="journey-step" style="opacity:.4;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:.3rem 1rem">
+        <div></div><div>Étape</div><div style="text-align:center">Intensité</div><div style="text-align:right">🔥</div>
+      </div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">01</div><div style="font-size:.95rem;font-weight:500">Expression du besoin</div><div class="js-bar"><div class="js-bar-fill" style="width:31%;background:var(--amber)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">5</div></div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">02</div><div style="font-size:.95rem;font-weight:500">Transmission demande</div><div class="js-bar"><div class="js-bar-fill" style="width:25%;background:var(--amber)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">4</div></div>
+      <div class="journey-step is-fire" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--fire);text-align:center">03</div><div style="font-size:.95rem;font-weight:700">Sourcing / Matching</div><div class="js-bar"><div class="js-bar-fill" style="width:81%;background:var(--fire)"></div></div><div style="font-size:1.05rem;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--fire)">13 🔥</div></div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">04</div><div style="font-size:.95rem;font-weight:500">Présélection</div><div class="js-bar"><div class="js-bar-fill" style="width:25%;background:var(--text3)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">4</div></div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">05</div><div style="font-size:.95rem;font-weight:500">Entretien / Sélection</div><div class="js-bar"><div class="js-bar-fill" style="width:31%;background:var(--amber)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">5</div></div>
+      <div class="journey-step is-fire" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--fire);text-align:center">06</div><div style="font-size:.95rem;font-weight:700">Contractualisation</div><div class="js-bar"><div class="js-bar-fill" style="width:100%;background:var(--fire)"></div></div><div style="font-size:1.05rem;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--fire)">16 🔥</div></div>
+      <div class="journey-step is-fire" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--fire);text-align:center">07</div><div style="font-size:.95rem;font-weight:700">Onboarding</div><div class="js-bar"><div class="js-bar-fill" style="width:69%;background:var(--fire)"></div></div><div style="font-size:1.05rem;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--fire)">11 🔥</div></div>
+      <div class="journey-step is-fire" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--fire);text-align:center">08</div><div style="font-size:.95rem;font-weight:700">Exécution mission</div><div class="js-bar"><div class="js-bar-fill" style="width:56%;background:var(--fire)"></div></div><div style="font-size:1.05rem;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--fire)">9 🔥</div></div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">09</div><div style="font-size:.95rem;font-weight:500">Suivi / Pilotage</div><div class="js-bar"><div class="js-bar-fill" style="width:31%;background:var(--amber)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">5</div></div>
+      <div class="journey-step" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--text3);text-align:center">10</div><div style="font-size:.95rem;font-weight:500">Évaluation</div><div class="js-bar"><div class="js-bar-fill" style="width:19%;background:var(--text3)"></div></div><div style="font-size:1.05rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--text3)">3</div></div>
+      <div class="journey-step is-fire" style="padding:.35rem 1rem"><div class="js-num" style="font-size:.9rem;font-weight:700;color:var(--fire);text-align:center">11</div><div style="font-size:.95rem;font-weight:700">Facturation / Paiement</div><div class="js-bar"><div class="js-bar-fill" style="width:44%;background:var(--fire)"></div></div><div style="font-size:1.05rem;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--fire)">7 🔥</div></div>
+    </div>
+
+    <div data-a="3" class="verbatim" style="max-width:1300px;width:100%;margin-top:.6rem;padding:1rem 1.2rem">
+      <q style="font-size:.85rem">Pénalité non libératoire équivalente au prix unitaire par jour de retard</q>
+      <div class="v-src" style="margin-top:.4rem">— BPCE 2026, Contrat §2.4 — 1 TJ/jour si remplacement &gt;5j. Le client a monétisé sa douleur.</div>
+    </div>
+
+    <div data-a="4" class="callout-fire" style="max-width:1300px;width:100%;margin-top:.4rem;padding:.5rem .9rem;border-radius:10px;font-size:.9rem;background:var(--fire-glow);border:1px solid rgba(239,68,68,.1);color:#991B1B">
+      <strong>Lecture :</strong> La contractualisation (16🔥) n'est pas un problème produit — c'est un mur juridique. Mais les étapes 03 (Sourcing), 07 (Onboarding), 08 (Exécution) et 11 (Facturation) sont directement adressables par la plateforme. C'est là que les killers répondent.
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 8: KILLER FEATURES (CARDS) ══════════════ -->
+  <div class="slide" data-slide="8" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl" style="color:var(--amber);border:1px solid rgba(245,158,11,.15);background:var(--amber-glow)">Killer features · 6 / 20</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Documents de notation · RC, CRT, grille</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem"><span class="text-amber">Ce que les clients écrivent quand ils veulent acheter</span></div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.6rem">Le client les note, les pondère, les évalue. Signal aspirationnel.</p>
+
+    <div data-a="2" style="width:100%;display:flex;flex-direction:column;gap:1px">
+      <!-- Row 1: Dashboard KPI -->
+      <div style="display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Dashboard KPI</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Suivi consolidé des missions, délais et conformité en continu.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:50px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">16 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;font-style:italic;color:var(--text2)"><em style="font-style:normal;color:var(--text3)">Nous souhaitons</em> <strong style="font-style:normal">faire évoluer le modèle</strong> <em style="font-style:normal;color:var(--text3)">de simple mise à disposition vers un modèle</em> <strong style="font-style:normal">piloté par la performance</strong> <em style="font-style:normal;color:var(--text3)">avec des engagements mesurables</em></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">BPCE 2026</div></div>
+        </div>
+      </div>
+
+      <!-- Row 2: Vivier pré-qualifié -->
+      <div style="display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Vivier pré-qualifié</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Catalogue de freelances disponibles, qualifiés, profils à jour.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:47px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">15 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;font-style:italic;color:var(--text2)"><em style="font-style:normal;color:var(--text3)">Disposer d'un</em> <strong style="font-style:normal">vivier actif de 800 à 1000 CV</strong> <em style="font-style:normal;color:var(--text3)">avec profils ayant mis à jour leur disponibilité</em></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">EDF PGIF</div></div>
+        </div>
+      </div>
+
+      <!-- Row 3: Portail digital -->
+      <div style="display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Portail digital</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Interface client self-service — soumission des besoins, réception des profils, suivi des missions.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:40px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">13 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><strong>Pas de plateforme = note 0</strong> <em style="color:var(--text3)">[...] fonctions avancées permettant un haut niveau de pilotage</em> <strong>= note 5</strong></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">EDF SMASH</div></div>
+        </div>
+      </div>
+
+      <!-- Row 4: Scoring -->
+      <div style="display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Qualification</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Pré-qualification technique avant soumission — scoring automatisé.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:28px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">9 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><strong>Dès le premier envoi</strong>, <em style="color:var(--text3)">des profils parfaitement alignés</em></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">BPCE Finance</div></div>
+        </div>
+      </div>
+
+      <!-- Row 5: Matching IA -->
+      <div style="display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Matching IA</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Algorithme multicritère croisant besoin × vivier — profil, techno, dispo.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:22px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">7 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><strong>Matching</strong> <em style="color:var(--text3)">(algorithme, IA…) entre vivier et missions</em></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">Klésia</div></div>
+        </div>
+      </div>
+
+      <!-- Row 6: Alertes proactives -->
+      <div style="display:grid;grid-template-columns:220px 1fr">
+        <div style="padding:.55rem .8rem;border-left:3px solid var(--amber)">
+          <div style="font-size:1rem;font-weight:800">Alertes proactives</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Notifications : expiration docs, départ FL, dérive KPI, SLA.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:22px;height:4px;border-radius:2px;background:var(--amber)"></div><span style="font-size:.85rem;font-weight:700;color:var(--amber)">7 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><strong>Informer immédiatement</strong> <em style="color:var(--text3)">le pouvoir adjudicateur</em></span><span style="font-size:1rem;color:var(--amber);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">SGP</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 9: REQUIRED + NICHE (CARDS) ══════════════ -->
+  <div class="slide" data-slide="9" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl" style="color:var(--fire);border:1px solid rgba(239,68,68,.15);background:var(--fire-glow)">Required · 10/20</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Documents contractuels · CCAP, contrat cadre, CGA</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem"><span class="text-fire">Ce que les clients mettent en pénalité</span></div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.4rem">Signal punitif. Pénalités en EUR, résiliation, exclusion, clause éliminatoire.</p>
+
+    <div data-a="2" style="width:100%;display:flex;flex-direction:column;gap:1px">
+      <!-- Compliance -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Compliance réglementaire</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">URSSAF, Kbis, RC Pro, RGPD. Vérification continue.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:50px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">16 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Résiliation plein droit</strong>, <em style="color:var(--text3)">sans mise en demeure</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">RESAH</div></div>
+        </div>
+      </div>
+      <!-- Anti-turnover -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Stabilité des équipes</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Remplacement garanti, clause de rétention.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:40px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">13 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)">Pénalité <strong>1 TJ/jour</strong> <em style="color:var(--text3)">si remplacement &gt;5j</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">BPCE</div></div>
+        </div>
+      </div>
+      <!-- Intégration SI -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Intégration SI client</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">API, ERP, connecteurs VMS — Ariba, SAP.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:31px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">10 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Obligation d'interfaçage</strong>, <em style="color:var(--text3)">résiliation si non-conformité</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">ENGIE</div></div>
+        </div>
+      </div>
+      <!-- Onboarding -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Onboarding freelances</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">NDA, RGPD, habilitations, signature électronique.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:25px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">8 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>100€/jour de retard</strong> <em style="color:var(--text3)">onboarding</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">RESAH</div></div>
+        </div>
+      </div>
+      <!-- Sous-traitance -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Encadrement sous-traitance</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Encadrement, plafonnement, traçabilité chaîne.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:22px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">7 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>5 000€ par prestation</strong> <em style="color:var(--text3)">non déclarée</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">EDF</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SLIDE 9: REQUIRED 2/2 ══════════════ -->
+  <div class="slide" data-slide="10" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl" style="color:var(--fire);border:1px solid rgba(239,68,68,.15);background:var(--fire-glow)">Required · 10/20 (suite)</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Documents contractuels · CCAP, contrat cadre, CGA</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem"><span class="text-fire">Ce que les clients mettent en pénalité</span></div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.4rem">Pilotage, sécurité, propriété intellectuelle et souveraineté.</p>
+
+    <div data-a="2" style="width:100%;display:flex;flex-direction:column;gap:1px">
+      <!-- Facturation -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Pilotage contractuel</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Bon de commande, validation livrables, facturation, pénalités de retard.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:16px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">5 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Aucune mission ne peut débuter</strong> <em style="color:var(--text3)">sans numéro de commande</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">EDF PGIF</div></div>
+        </div>
+      </div>
+      <!-- SSO -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">SSO / Sécurité SI</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Authentification renforcée, MFA, PSSI, DRP.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:13px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">4 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Exclusion</strong> <em style="color:var(--text3)">si non-conforme</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">Klésia</div></div>
+        </div>
+      </div>
+      <!-- Monitoring / SLA -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Monitoring / SLA</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Uptime plateforme, SLA disponibilité, GTR.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:10px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">3 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)">Obligation <strong>SLA 99,5%+</strong></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">BPCE</div></div>
+        </div>
+      </div>
+      <!-- Clause PI -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Clause PI</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Cession intégrale propriété intellectuelle.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:10px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">3 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Cession obligatoire</strong> <em style="color:var(--text3)">dans chaque contrat</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">Klésia</div></div>
+        </div>
+      </div>
+      <!-- Hébergement UE -->
+      <div style="display:grid;grid-template-columns:320px 1fr">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--fire)">
+          <div style="font-size:.98rem;font-weight:800">Hébergement UE</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Souveraineté données, hébergement UE, RGPD.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:7px;height:4px;border-radius:2px;background:var(--fire)"></div><span style="font-size:.85rem;font-weight:700;color:var(--fire)">2 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>Transfert hors UE interdit</strong> — <em style="color:var(--text3)">clause éliminatoire</em></span><span style="font-size:1rem;color:var(--fire);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">RATP</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NICHE section -->
+    <div data-a="3" style="width:100%;margin-top:.5rem">
+      <div style="display:grid;grid-template-columns:320px 1fr;border-top:2px solid rgba(16,185,129,.2)">
+        <div style="padding:.4rem .8rem;border-left:3px solid var(--green)">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.05rem">Niche</div>
+          <div style="font-size:.98rem;font-weight:800">Avance trésorerie</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.3;margin-top:.05rem">Le freelance est payé rapidement même si le client paie à 60j. 56% des AO l'ignorent, mais ADP le pondère à 20% de la note technique.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.15rem"><div style="width:28px;height:4px;border-radius:2px;background:var(--green)"></div><span style="font-size:.85rem;font-weight:700;color:var(--green)">9 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.4rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--green);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:1.05rem;color:var(--text2)"><strong>L'existence d'un système d'avance de trésorerie</strong></span><span style="font-size:1rem;color:var(--green);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.15rem;margin-left:1.2rem">ADP</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 10: NICE TO HAVE (CARDS) ══════════════ -->
+  <div class="slide" data-slide="11" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl" style="color:var(--text3);border:1px solid rgba(148,163,184,.15);background:rgba(148,163,184,.06)">Nice to have · 3/20</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Documents descriptifs · CCTP, cahier des charges</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem"><span style="color:var(--text3)">Ce que les clients mentionnent sans trancher</span></div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.6rem">Ni noté, ni pénalisé. Le marché n'a pas encore convergé.</p>
+
+    <div data-a="2" style="width:100%;display:flex;flex-direction:column;gap:1px">
+      <!-- Transparence tarifaire -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px dashed var(--text3)">
+          <div style="font-size:1rem;font-weight:800">Transparence tarifaire</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Décomposition TJM + mark-up séparé. Fréquent mais jamais killer.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:44px;height:4px;border-radius:2px;background:var(--text3)"></div><span style="font-size:.85rem;font-weight:700;color:var(--text3)">14 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><em style="color:var(--text3)">Un</em> <strong>devis détaillé</strong> <em style="color:var(--text3)">précisant le coût par profil ainsi que la</em> <strong>commission de la plateforme</strong></span><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">RATP</div></div>
+        </div>
+      </div>
+
+      <!-- RSE / EcoVadis -->
+      <div style="display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--glass-border)">
+        <div style="padding:.55rem .8rem;border-left:3px dashed var(--text3)">
+          <div style="font-size:1rem;font-weight:800">RSE / EcoVadis</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">EcoVadis, bilan carbone, insertion sociale. Pondéré 5-10% max.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:19px;height:4px;border-radius:2px;background:var(--text3)"></div><span style="font-size:.85rem;font-weight:700;color:var(--text3)">6 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:rgba(148,163,184,.08);color:var(--text3);font-weight:700;border:1px solid rgba(148,163,184,.15);margin-left:auto">PROCESS</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><em style="color:var(--text3)">Le Titulaire s'engage à réaliser une</em> <strong>action d'insertion</strong> <em style="color:var(--text3)">[...] 1 heure minimum par fraction de</em> <strong>3 000€ HT facturés</strong></span><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">CANUT</div></div>
+        </div>
+      </div>
+
+      <!-- Multi-entités -->
+      <div style="display:grid;grid-template-columns:320px 1fr">
+        <div style="padding:.55rem .8rem;border-left:3px dashed var(--text3)">
+          <div style="font-size:1rem;font-weight:800">Multi-entités</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.4;margin-top:.1rem">Gestion multi-filiales depuis un portail unique. Pertinent Bolloré + Hermès.</div>
+          <div style="display:flex;align-items:center;gap:.3rem;margin-top:.25rem"><div style="width:10px;height:4px;border-radius:2px;background:var(--text3)"></div><span style="font-size:.85rem;font-weight:700;color:var(--text3)">3 AO</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1);margin-left:auto">PRODUIT</span></div>
+        </div>
+        <div style="padding:.55rem .8rem;display:flex;align-items:center">
+          <div><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-right:.3rem;vertical-align:top">"</span><span style="font-size:.98rem;color:var(--text2)"><strong>110 freelances</strong> <em style="color:var(--text3)">sourcés et portés par</em> <strong>une quinzaine de sociétés</strong></span><span style="font-size:1rem;color:var(--text3);font-weight:300;margin-left:.15rem">"</span><div style="font-size:.85rem;color:var(--text3);margin-top:.2rem;margin-left:1.2rem">Hermès</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom callout -->
+    <div data-a="3" style="width:100%;margin-top:.8rem;padding:.45rem .8rem;border-radius:12px;background:rgba(0,0,0,.02);border:1px solid var(--glass-border);font-size:.9rem;color:var(--text2)">
+      <strong style="color:var(--text)">NTH ne veut pas dire inutile.</strong> Ça veut dire que le marché n'a pas encore convergé — ces signaux peuvent devenir required ou killer demain.
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 11: BACKLOG CLIENT-SPÉCIFIQUE ══════════════ -->
+  <div class="slide" data-slide="12" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl" style="color:var(--blue);border:1px solid rgba(0,60,194,.15);background:var(--blue-glow)">Signaux backlog · 6 familles</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Features client-spécifiques · non transverses</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.7rem">Features <span class="gradient-text">client-spécifiques</span>, non transverses</div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.6rem">Demandées par un seul client mais pertinentes pour le backlog d'une plateforme d'intermédiation.</p>
+
+    <div data-a="2" style="width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem">
+      <!-- 1. Contrôle usage IA -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">RATP</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Contrôle usage IA par mission</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Toggle IA autorisée/interdite + déclaration auto par livrable.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">GOUVERNANCE IA</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+
+      <!-- 2. Formulaire de besoin guidé -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">RESAH</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Formulaire de besoin guidé</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Mode guidé non-IT, traduction auto en brief technique.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">SOURCING</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+
+      <!-- 3. Évaluation freelance post-mission -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">SGP</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Évaluation freelance post-mission</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Historique collabs + évaluation par persona → scoring vivier.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">QUALITÉ</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+
+      <!-- 4. Bon de commande digital -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">ENGIE</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Bon de commande digital + signature</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Signature électronique obligatoire — blocage si absent.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">OPS</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+
+      <!-- 5. Devis et formulaires pré-remplis -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">SGP</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Devis et formulaires pré-remplis</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Pré-remplis auto depuis les données mission.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">ADMIN</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+
+      <!-- 6. Ajout freelances clients au vivier -->
+      <div style="padding:.8rem .9rem;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <span style="font-size:.85rem;padding:.15rem .4rem;border-radius:5px;background:rgba(0,0,0,.04);color:var(--text);font-weight:700;border:1px solid var(--glass-border)">Klésia</span>
+          <div style="font-size:1.05rem;font-weight:800;margin-top:.5rem;line-height:1.2">Ajout freelances clients au vivier</div>
+          <div style="font-size:.85rem;color:var(--text3);line-height:1.5;margin-top:.3rem">Workflow d'intégration de profils spécifiques demandés par le client.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--glass-border)"><span style="font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">SOURCING</span><span style="font-size:.85rem;padding:.1rem .3rem;border-radius:3px;background:var(--blue-glow);color:var(--blue);font-weight:700;border:1px solid rgba(0,60,194,.1)">PRODUIT</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 12: ÉCLAIRAGE INOPS ══════════════ -->
+  <div class="slide" data-slide="13" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <div data-a="1" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:.1rem">
+      <span class="sl sl-in">Éclairage Inop's · 12 AO publics & parapublics</span>
+      <span style="font-size:.85rem;color:var(--text3);letter-spacing:.03em">Source secondaire · Confirmation cross-sources</span>
+    </div>
+    <div data-a="1" class="st" style="font-size:1.6rem"><span style="color:var(--green)">4 killers confirmés</span> sur 30 AO, <span style="color:var(--inops)">1 divergence</span></div>
+    <p data-a="1" style="font-size:.98rem;color:var(--text2);margin-bottom:.8rem">18 AO privés (FCOM) × 12 AO publics (Inop's) — les deux sources convergent sur l'essentiel.</p>
+
+    <!-- Convergences : 4 killers confirmés -->
+    <div data-a="2" style="width:100%;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+        <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)">Killer confirmé privé + public</div>
+        <div style="font-size:.85rem;color:var(--text3)">Signal le plus fort de l'analyse</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.6rem">
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--amber);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">Vivier</div>
+          <span style="font-size:.75rem;padding:.15rem .4rem;border-radius:5px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">KILLER × KILLER</span>
+        </div>
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--amber);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">Dashboard KPI</div>
+          <span style="font-size:.75rem;padding:.15rem .4rem;border-radius:5px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">KILLER × KILLER</span>
+        </div>
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--amber);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">Alertes</div>
+          <span style="font-size:.75rem;padding:.15rem .4rem;border-radius:5px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">KILLER × KILLER</span>
+        </div>
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--amber);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:1rem;font-weight:800;margin-bottom:.2rem">Portail digital</div>
+          <span style="font-size:.75rem;padding:.15rem .4rem;border-radius:5px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">KILLER × KILLER</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divergence : Anti-turnover -->
+    <div data-a="3" style="width:100%;margin-bottom:1rem">
+      <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--inops);margin-bottom:.5rem">Divergence — la seule feature qui change de statut</div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:1.5rem;padding:.8rem 1.2rem;border-radius:14px;border-left:3px solid var(--inops);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+        <div>
+          <div style="font-size:1.05rem;font-weight:800;margin-bottom:.3rem">Stabilité des équipes</div>
+          <div style="font-size:.9rem;color:var(--text2);line-height:1.5">Le privé pénalise le turnover (required). Le public va plus loin : il le note, le pondère, en fait un critère de sélection (killer).</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.6rem;flex-shrink:0">
+          <div style="text-align:center">
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--text3);margin-bottom:.2rem">PRIVÉ</div>
+            <span style="font-size:.8rem;padding:.2rem .5rem;border-radius:6px;background:var(--fire-glow);color:var(--fire);font-weight:700;border:1px solid rgba(239,68,68,.12)">REQUIRED</span>
+          </div>
+          <div style="font-size:1.2rem;color:var(--inops);font-weight:800">→</div>
+          <div style="text-align:center">
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--text3);margin-bottom:.2rem">PUBLIC</div>
+            <span style="font-size:.8rem;padding:.2rem .5rem;border-radius:6px;background:var(--amber-glow);color:var(--amber);font-weight:700;border:1px solid rgba(245,158,11,.15)">KILLER</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breakpoints parcours -->
+    <div data-a="4" style="width:100%">
+      <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem">Breakpoint — là où le parcours bloque</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--blue);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.2rem">Privé (FCOM)</div>
+          <div style="font-size:1.05rem;font-weight:800">Contractualisation</div>
+          <div style="font-size:.85rem;color:var(--text3);margin-top:.2rem">Mur juridique — le public, habitué aux marchés structurés, ne le subit pas</div>
+        </div>
+        <div style="padding:.8rem 1rem;border-radius:14px;border-left:3px solid var(--inops);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+          <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--inops);margin-bottom:.2rem">Public (Inop's)</div>
+          <div style="font-size:1.05rem;font-weight:800">Pilotage mission</div>
+          <div style="font-size:.85rem;color:var(--text3);margin-top:.2rem">Le public exige un suivi opérationnel quotidien que le privé ne formalise pas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════ SLIDE 13: TRANSPARENCE — LIMITES ══════════════ -->
+  <div class="slide" data-slide="14" style="text-align:left;align-items:flex-start;max-width:1500px;margin:0 auto;padding-top:3.5rem;padding-bottom:2rem">
+    <span data-a="1" class="sl sl-fc">Transparence</span>
+    <div data-a="1" class="st" style="font-size:1.8rem">Ce que ces données <span style="color:var(--fire)">ne disent pas</span></div>
+    <p data-a="1" style="font-size:1rem;color:var(--text2);margin-bottom:1.2rem">2 limites à connaître avant de décider.</p>
+
+    <!-- Two limit cards -->
+    <div data-a="2" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;width:100%;margin-bottom:1rem">
+      <!-- Biais de source -->
+      <div style="padding:.9rem 1.2rem;border-radius:14px;border-left:3px solid var(--fire);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire);margin-bottom:.3rem">Limite 1</div>
+        <div style="font-size:1.05rem;font-weight:800;margin-bottom:.4rem">Biais de source</div>
+        <div style="font-size:.9rem;color:var(--text2);line-height:1.6">Ces AO sont rédigés par les directions achats, pas par les utilisateurs finaux. Les besoins reflètent ce que les achats formalisent, pas nécessairement ce qui bloque au quotidien côté opérationnel.</div>
+      </div>
+      <!-- Zéro interview -->
+      <div style="padding:.9rem 1.2rem;border-radius:14px;border-left:3px solid var(--fire);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire);margin-bottom:.3rem">Limite 2</div>
+        <div style="font-size:1.05rem;font-weight:800;margin-bottom:.4rem">Zéro interview</div>
+        <div style="font-size:.9rem;color:var(--text2);line-height:1.6">Les fréquences sont solides (30 AO, 123 frictions), mais aucune friction n'a été confrontée au terrain par un entretien utilisateur. On sait ce qu'ils écrivent, pas encore ce qu'ils vivent.</div>
+      </div>
+    </div>
+
+    <!-- Ratio de confiance -->
+    <div data-a="3" style="width:100%;padding:1rem 1.2rem;border-radius:14px;border-left:3px solid var(--green);background:var(--glass);border-top:1px solid var(--glass-border);border-right:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)">
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <!-- Donut -->
+        <div style="position:relative;width:100px;height:100px;flex-shrink:0">
+          <div style="width:100px;height:100px;border-radius:50%;background:conic-gradient(var(--green) 0% 100%);display:flex;align-items:center;justify-content:center">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--glass);display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <div style="font-size:1.4rem;font-weight:800;color:var(--green);line-height:1">100%</div>
+              <div style="font-size:.65rem;color:var(--text3);font-weight:500">sourcés</div>
+            </div>
+          </div>
+        </div>
+        <!-- Content -->
+        <div>
+          <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem">Ratio de confiance</div>
+          <div style="font-size:1.05rem;font-weight:800;margin-bottom:.3rem">237 verbatims, 100% traçables</div>
+          <div style="font-size:.9rem;color:var(--text2);line-height:1.5">Chaque verbatim est traçable jusqu'à son document source (RC, CCAP, CCTP, BPU). Aucune friction n'a été supposée ou inventée.</div>
+          <div style="font-size:.8rem;color:var(--text3);margin-top:.3rem">Sur 30 AO · 2 sources indépendantes (FCOM + Inop's)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let current=1;
+
+function go(n){
+  const s=document.querySelector('[data-slide="'+n+'"]');
+  if(s){s.scrollIntoView({behavior:'smooth'});current=n}
+}
+
+function updateUI(n){
+  current=parseInt(n);
+  const pct=((current-1)/(total-1))*100;
+  document.getElementById('progress').style.width=pct+'%';
+  document.getElementById('slide-counter').innerHTML='<span class="current">'+current+'</span> / '+total;
+  document.querySelectorAll('nav a').forEach(a=>{a.classList.toggle('active',a.dataset.nav==n)});
+}
+
+// Scroll reveal + active tracking
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      updateUI(e.target.dataset.slide);
+    }
+  })
+},{threshold:0.3});
+slides.forEach(s=>revealObserver.observe(s));
+
+// Keyboard navigation
+let hintHidden=false;
+document.addEventListener('keydown',e=>{
+  if(!hintHidden){document.getElementById('kb-hint').style.opacity='0';hintHidden=true}
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){
+    e.preventDefault();if(current<total)go(current+1);
+  }else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){
+    e.preventDefault();if(current>1)go(current-1);
+  }else if(e.key==='Home'){
+    e.preventDefault();go(1);
+  }else if(e.key==='End'){
+    e.preventDefault();go(total);
+  }
+});
+
+// Auto-hide keyboard hint after 6s
+setTimeout(()=>{if(!hintHidden){document.getElementById('kb-hint').style.opacity='0';hintHidden=true}},6000);
+
+// Reveal first slide immediately
+slides[0]&&slides[0].classList.add('visible');
+</script>
+</body>
+</html>
